@@ -4,3 +4,6 @@
 export interface IUserOptions {
   uid: number;
 }
+export interface UserOptions {
+  username: string;
+}
