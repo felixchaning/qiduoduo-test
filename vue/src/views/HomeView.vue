@@ -27,9 +27,13 @@
 
     <a-form-item :wrapper-col="{ offset: 8, span: 16 }">
       <a-button type="primary" html-type="submit" @click="login">登录</a-button>
-			<a-button type="primary" html-type="submit" @click="signup" style="margin-left: 1rem"
-			>注册</a-button
-			>
+      <a-button
+        type="primary"
+        html-type="submit"
+        @click="signup"
+        style="margin-left: 1rem"
+        >注册</a-button
+      >
     </a-form-item>
   </a-form>
 </template>
@@ -52,14 +56,29 @@ export default defineComponent({
       console.log('Failed:', errorInfo)
     }
 
-    const signup = (info) => {
-      Signup(formState)
-      console.log('signup', info)
+    const resetForm = () => {
+      formState.username = ''
+      formState.password = ''
     }
 
-    const login = (info) => {
-      Login(formState)
-      console.log('login', info)
+    const signup = () => {
+      Signup(formState).then((res) => {
+        if (res && res?.success) {
+          alert(res?.message)
+          resetForm()
+        }
+      })
+    }
+
+    const login = () => {
+      Login(formState).then((res) => {
+        if (res && res?.code === 200) {
+          alert(res?.message)
+          resetForm()
+        } else {
+          alert(res?.message)
+        }
+      })
     }
 
     return {
