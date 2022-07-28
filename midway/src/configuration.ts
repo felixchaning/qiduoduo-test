@@ -7,6 +7,10 @@ import { join } from 'path';
 // import { NotFoundFilter } from './filter/notfound.filter';
 import { ReportMiddleware } from './middleware/report.middleware';
 import * as orm from '@midwayjs/typeorm';
+import * as dotenv from 'dotenv';
+
+// 初始化环境变量
+dotenv.config();
 
 @Configuration({
   imports: [
