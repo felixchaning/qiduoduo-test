@@ -9,6 +9,9 @@ import { ReportMiddleware } from './middleware/report.middleware';
 import * as orm from '@midwayjs/typeorm';
 import * as dotenv from 'dotenv';
 import * as jwt from '@midwayjs/jwt';
+import { ValidateErrorFilter } from './filter/validate.filter';
+import { NotFoundFilter } from './filter/notfound.filter';
+import { DefaultErrorFilter } from './filter/default.filter';
 
 // 初始化环境变量
 dotenv.config();
@@ -34,6 +37,10 @@ export class ContainerLifeCycle {
     // add middleware
     this.app.useMiddleware([ReportMiddleware]);
     // add filter
-    // this.app.useFilter([NotFoundFilter, DefaultErrorFilter]);
+    this.app.useFilter([
+      NotFoundFilter,
+      DefaultErrorFilter,
+      ValidateErrorFilter,
+    ]);
   }
 }

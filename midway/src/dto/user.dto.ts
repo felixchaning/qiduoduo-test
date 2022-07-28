@@ -1,9 +1,10 @@
-// import {Rule} from "@midwayjs/validate";
+import { Rule, RuleType } from '@midwayjs/validate';
+const required = RuleType.string().required();
 
 export class UserLoginDTO {
-  // @Rule(...)
-  // username: string;
+  @Rule(required)
+  username: string;
   //
-  // @Rule(...)
-  // password: string;
+  @Rule(required)
+  password: string;
 }

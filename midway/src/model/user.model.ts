@@ -1,5 +1,5 @@
 import { InjectEntityModel } from '@midwayjs/typeorm';
-import { UserEntity } from './user.entity';
+import { UserEntity } from '../entity/user.entity';
 import { Repository } from 'typeorm';
 
 export class UserModel {
