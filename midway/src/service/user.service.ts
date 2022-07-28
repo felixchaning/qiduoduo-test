@@ -10,15 +10,12 @@ export class UserService {
   userRepo: Repository<UserEntity>;
 
   async getUser(options: UserOptions) {
-    const all = await this.userRepo.find();
-    // const one = await this.userRepo.findOne({
-    //   username: options.username,
-    //   password: options.password,
-    // });
-    return {
-      all: all,
-      username: options.username,
-    };
+    return await this.userRepo.find({
+      where: {
+        username: options.username,
+        password: options.password,
+      },
+    });
   }
   async saveUser(options: UserOptions) {
     const userResult = await this.userRepo.save(options);
