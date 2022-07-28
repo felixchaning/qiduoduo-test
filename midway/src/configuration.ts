@@ -8,6 +8,7 @@ import { join } from 'path';
 import { ReportMiddleware } from './middleware/report.middleware';
 import * as orm from '@midwayjs/typeorm';
 import * as dotenv from 'dotenv';
+import * as jwt from '@midwayjs/jwt';
 
 // 初始化环境变量
 dotenv.config();
@@ -17,6 +18,7 @@ dotenv.config();
     koa,
     validate,
     orm,
+    jwt,
     {
       component: info,
       enabledEnvironment: ['local'],

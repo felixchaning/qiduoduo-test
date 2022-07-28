@@ -29,4 +29,8 @@ export default {
       },
     },
   },
+  jwt: {
+    secret: 'xxxxxxxxxxxxxx', // fs.readFileSync('xxxxx.key')
+    expiresIn: '2d', // https://github.com/vercel/ms
+  },
 } as MidwayConfig;
