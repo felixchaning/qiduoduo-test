@@ -21,16 +21,23 @@ export class APIController {
   async getUser(@Body() user: UserLoginDTO) {
     const theUser = await this.userService.getUser(user);
     const token = await this.jwt.sign({ msg: 'Hello Midway' });
-    return {
-      success: true,
-      result: 'success',
-      message: '登录成功',
-      data: {
-        token: token,
-        user: theUser,
-      },
-      request: user,
-    };
+    if (theUser && theUser.length) {
+      return {
+        code: 200,
+        result: 'success',
+        message: '登录成功',
+        data: {
+          token: token,
+        },
+      };
+    } else {
+      return {
+        code: 400,
+        result: 'error',
+        message: '账号或密码不正确',
+        data: null,
+      };
+    }
   }
 
   @Post('/user/signup')
