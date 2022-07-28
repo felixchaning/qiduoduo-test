@@ -25,23 +25,23 @@
       <a-input-password v-model:value="formState.password" />
     </a-form-item>
 
-    <a-form-item name="remember" :wrapper-col="{ offset: 8, span: 16 }">
-      <a-checkbox v-model:checked="formState.remember">Remember me</a-checkbox>
-    </a-form-item>
-
     <a-form-item :wrapper-col="{ offset: 8, span: 16 }">
-      <a-button type="primary" html-type="submit">登录</a-button>
+      <a-button type="primary" html-type="submit" @click="login">登录</a-button>
+			<a-button type="primary" html-type="submit" @click="signup" style="margin-left: 1rem"
+			>注册</a-button
+			>
     </a-form-item>
   </a-form>
 </template>
 <script>
 import { defineComponent, reactive } from 'vue'
+import { Login, Signup } from '../api'
+
 export default defineComponent({
   setup() {
     const formState = reactive({
       username: '',
       password: '',
-      remember: true,
     })
 
     const onFinish = (values) => {
@@ -52,10 +52,22 @@ export default defineComponent({
       console.log('Failed:', errorInfo)
     }
 
+    const signup = (info) => {
+      Signup(formState)
+      console.log('signup', info)
+    }
+
+    const login = (info) => {
+      Login(formState)
+      console.log('login', info)
+    }
+
     return {
       formState,
       onFinish,
       onFinishFailed,
+      signup,
+      login,
     }
   },
 })
